@@ -1,5 +1,4 @@
 services:
-  # ── 1. Portal Backend ──────────────────────────────────────────────────────
   - type: web
     name: finsaathi-portal-backend
     rootDir: portal/backend
@@ -13,16 +12,12 @@ services:
       - key: REGISTRY_PATH
         value: ./registry
       - key: ANTHROPIC_API_KEY
-        sync: false          # paste this in Render dashboard after deploy
+        sync: false
       - key: FRONTEND_URL
-        sync: false          # paste portal-frontend URL after it deploys
+        sync: false
       - key: MCP_SERVER_URL
-        fromService:
-          name: finsaathi-mcp-server
-          type: web
-          property: hostWithScheme
+        sync: false
 
-  # ── 2. MCP Server ──────────────────────────────────────────────────────────
   - type: web
     name: finsaathi-mcp-server
     rootDir: mcp-server
@@ -36,10 +31,7 @@ services:
       - key: CLIENT_ID
         value: bajaj-finance
       - key: PORTAL_API_URL
-        fromService:
-          name: finsaathi-portal-backend
-          type: web
-          property: hostWithScheme
+        sync: false
       - key: JWT_SECRET
         generateValue: true
       - key: SANDBOX_OTP
