@@ -1,0 +1,64 @@
+services:
+  # ── 1. Portal Backend ──────────────────────────────────────────────────────
+  - type: web
+    name: finsaathi-portal-backend
+    rootDir: portal/backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: starter
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REGISTRY_PATH
+        value: ./registry
+      - key: ANTHROPIC_API_KEY
+        sync: false          # you'll paste this in Render dashboard
+      - key: FRONTEND_URL
+        fromService:
+          name: finsaathi-portal-frontend
+          type: static
+          property: host
+      - key: MCP_SERVER_URL
+        fromService:
+          name: finsaathi-mcp-server
+          type: web
+          property: hostWithScheme
+
+  # ── 2. MCP Server ──────────────────────────────────────────────────────────
+  - type: web
+    name: finsaathi-mcp-server
+    rootDir: mcp-server
+    runtime: node
+    buildCommand: npm install
+    startCommand: node src/server.js
+    plan: starter
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_ID
+        value: bajaj-finance
+      - key: PORTAL_API_URL
+        fromService:
+          name: finsaathi-portal-backend
+          type: web
+          property: hostWithScheme
+      - key: JWT_SECRET
+        generateValue: true  # Render generates a secure random secret
+      - key: SANDBOX_OTP
+        value: "123456"
+      - key: SESSION_TTL_MINUTES
+        value: "30"
+
+  # ── 3. Portal Frontend (Static Site) ───────────────────────────────────────
+  - type: static
+    name: finsaathi-portal-frontend
+    rootDir: portal/frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: finsaathi-portal-backend
+          type: web
+          property: hostWithScheme

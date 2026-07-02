@@ -1,0 +1,18 @@
+{
+  "clientId": "garima",
+  "name": "Garima",
+  "domain": "bajajfinserv.in",
+  "channels": [
+    "claude"
+  ],
+  "auth": {
+    "method": "oauth",
+    "sandboxOtp": "123456",
+    "oauthDomain": "auth.garima",
+    "tokenTtl": 3600
+  },
+  "branding": {
+    "primaryColour": "#6366f1"
+  },
+  "createdAt": "2026-06-27T00:42:19.490Z"
+}

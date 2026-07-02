@@ -1,0 +1,15 @@
+{
+  "fields": {
+    "loan: [\n      {\n        prodDesc: 'PERSONAL LOAN',\n\n        customer_Name: 'Vikas Singh Rathaur',\n\n        roi: 11.25,\n\n        agreementNo: 'X402P34T9588444',\n\n        disbDate: '27/03/2025',\n\n        partnerName: null,\n\n        flexiFlag: 'Y',\n\n        totalOverDue: 0,\n\n        pos: 4203,\n\n        prodCategory: 'PERSONAL LOAN',\n\n        relStatus: 'Active',\n\n        prodId: 'PSPFL',\n\n        missedEmi: 0,\n\n        netTenure: 96,\n\n        isMilesFlag: 'N',\n\n        crmDealId: 'B2C000117643003',\n\n        primaryCustomerId: null,\n\n        relAmount: 3739000,\n\n        opportunityId: null,\n\n        nextEMIAmount: 132,\n\n        amcCharges: '0',\n\n        amountDrawnLimit: 3734797,\n\n        sourceSysId: '2',\n\n        applId: '1015709507',\n\n        listofAgreementNos: null,\n\n        closureDate: null,\n\n        grossTenure: 96,\n\n        balanceTenure: 83,\n\n        nextEmiDate:\n          '2026-08-02T00:00:00.0000000Z',\n\n        loanExpiryDate: '02/04/2033',\n      },\n    ],\n  };": {
+      "type": "skip",
+      "label": "Loan: [\n      {\n        Prod Desc: ' P E R S O N A L  L O A N',\n\n        Customer  Name: ' Vikas  Singh  Rathaur',\n\n        Roi: 11.25,\n\n        Agreement No: ' X402 P34 T9588444',\n\n        Disb Date: '27/03/2025',\n\n        Partner Name: Null,\n\n        Flexi Flag: ' Y',\n\n        Total Over Due: 0,\n\n        Pos: 4203,\n\n        Prod Category: ' P E R S O N A L  L O A N',\n\n        Rel Status: ' Active',\n\n        Prod Id: ' P S P F L',\n\n        Missed Emi: 0,\n\n        Net Tenure: 96,\n\n        Is Miles Flag: ' N',\n\n        Crm Deal Id: ' B2 C000117643003',\n\n        Primary Customer Id: Null,\n\n        Rel Amount: 3739000,\n\n        Opportunity Id: Null,\n\n        Next E M I Amount: 132,\n\n        Amc Charges: '0',\n\n        Amount Drawn Limit: 3734797,\n\n        Source Sys Id: '2',\n\n        Appl Id: '1015709507',\n\n        Listof Agreement Nos: Null,\n\n        Closure Date: Null,\n\n        Gross Tenure: 96,\n\n        Balance Tenure: 83,\n\n        Next Emi Date:\n          '2026 08 02 T00:00:00.0000000 Z',\n\n        Loan Expiry Date: '02/04/2033',\n      },\n    ],\n  };",
+      "include": false,
+      "role": null,
+      "notes": ""
+    }
+  },
+  "enumValues": {},
+  "thresholds": {},
+  "productRules": {},
+  "probingRules": []
+}

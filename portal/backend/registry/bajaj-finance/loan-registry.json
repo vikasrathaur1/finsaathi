@@ -1,0 +1,787 @@
+{
+  "client": {
+    "clientId": "bajaj-finance"
+  },
+  "api": {
+    "name": "loan",
+    "endpoint": "https://dataapi-0s65.onrender.com/loan/details",
+    "method": "POST"
+  },
+  "fields": {
+    "success": {
+      "type": "skip",
+      "label": "Success",
+      "include": false,
+      "role": null,
+      "notes": ""
+    },
+    "data.prodDesc": {
+      "type": "enum",
+      "label": "Product Description",
+      "include": true,
+      "role": "display",
+      "notes": "Product identification also"
+    },
+    "data.customer_Name": {
+      "type": "enum",
+      "label": "Customer  Name",
+      "include": true,
+      "role": "display",
+      "notes": ""
+    },
+    "data.roi": {
+      "type": "percentage",
+      "label": "Rate of interest",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.agreementNo": {
+      "type": "reference",
+      "label": "Agreement Number",
+      "include": false,
+      "role": "skip",
+      "notes": ""
+    },
+    "data.disbDate": {
+      "type": "date",
+      "label": "disbursement date",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.partnerName": {
+      "type": "skip",
+      "label": "Partner Name",
+      "include": false,
+      "role": null,
+      "notes": ""
+    },
+    "data.flexiFlag": {
+      "type": "enum",
+      "label": "Flexi Flag",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.totalOverDue": {
+      "type": "number",
+      "label": "Total Over Due",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.pos": {
+      "type": "currency",
+      "label": "Pos",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.prodCategory": {
+      "type": "enum",
+      "label": "Prod Category",
+      "include": true,
+      "role": "rules",
+      "notes": ""
+    },
+    "data.relStatus": {
+      "type": "enum",
+      "label": "Rel Status",
+      "include": true,
+      "role": "status",
+      "notes": ""
+    },
+    "data.prodId": {
+      "type": "reference",
+      "label": "Prod Id",
+      "include": false,
+      "role": "skip",
+      "notes": ""
+    },
+    "data.missedEmi": {
+      "type": "number",
+      "label": "Missed Emi",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.netTenure": {
+      "type": "number",
+      "label": "Net Tenure",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.isMilesFlag": {
+      "type": "enum",
+      "label": "Is Miles Flag",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.crmDealId": {
+      "type": "reference",
+      "label": "Crm Deal Id",
+      "include": false,
+      "role": "skip",
+      "notes": ""
+    },
+    "data.primaryCustomerId": {
+      "type": "skip",
+      "label": "Primary Customer Id",
+      "include": false,
+      "role": null,
+      "notes": ""
+    },
+    "data.relAmount": {
+      "type": "currency",
+      "label": "Rel Amount",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.opportunityId": {
+      "type": "skip",
+      "label": "Opportunity Id",
+      "include": false,
+      "role": null,
+      "notes": ""
+    },
+    "data.nextEMIAmount": {
+      "type": "currency",
+      "label": "Next E M I Amount",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.amcCharges": {
+      "type": "currency",
+      "label": "Amc Charges",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.amountDrawnLimit": {
+      "type": "currency",
+      "label": "Amount Drawn Limit",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.sourceSysId": {
+      "type": "skip",
+      "label": "Source Sys Id",
+      "include": false,
+      "role": null,
+      "notes": ""
+    },
+    "data.applId": {
+      "type": "reference",
+      "label": "Appl Id",
+      "include": false,
+      "role": "skip",
+      "notes": ""
+    },
+    "data.listofAgreementNos": {
+      "type": "skip",
+      "label": "Listof Agreement Nos",
+      "include": false,
+      "role": null,
+      "notes": ""
+    },
+    "data.closureDate": {
+      "type": "skip",
+      "label": "Closure Date",
+      "include": false,
+      "role": null,
+      "notes": ""
+    },
+    "data.grossTenure": {
+      "type": "number",
+      "label": "Gross Tenure",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.balanceTenure": {
+      "type": "number",
+      "label": "Balance Tenure",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.nextEmiDate": {
+      "type": "date",
+      "label": "Next Emi Date",
+      "include": true,
+      "role": null,
+      "notes": ""
+    },
+    "data.loanExpiryDate": {
+      "type": "date",
+      "label": "Loan Expiry Date",
+      "include": true,
+      "role": null,
+      "notes": ""
+    }
+  },
+  "enumValues": {
+    "// EXAMPLE — delete this row //": [
+      {
+        "value": "Active",
+        "meaning": "Loan is currently running",
+        "severity": "normal"
+      },
+      {
+        "value": "Overdue",
+        "meaning": "Payment has been missed",
+        "severity": "warning"
+      },
+      {
+        "value": "NPA",
+        "meaning": "Non-performing asset",
+        "severity": "critical"
+      },
+      {
+        "value": "Closed",
+        "meaning": "Loan is fully repaid",
+        "severity": "info"
+      }
+    ],
+    "data.prodDesc": [
+      {
+        "value": "Personal Loan",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "Gold Loan",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "Professional Loan",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "Business Loan",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.customer_Name": [
+      {
+        "value": "(value 1)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 2)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 3)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 4)",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.flexiFlag": [
+      {
+        "value": "(value 1)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 2)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 3)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 4)",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.prodCategory": [
+      {
+        "value": "(value 1)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 2)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 3)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 4)",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.relStatus": [
+      {
+        "value": "(value 1)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 2)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 3)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 4)",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.isMilesFlag": [
+      {
+        "value": "(value 1)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 2)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 3)",
+        "meaning": "",
+        "severity": "normal"
+      },
+      {
+        "value": "(value 4)",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ]
+  },
+  "thresholds": {
+    "// EXAMPLE — delete this row //": [
+      {
+        "condition": "===0",
+        "meaning": "Loan fully repaid — no outstanding",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "Amount still to be repaid",
+        "severity": "normal"
+      },
+      {
+        "condition": ">0",
+        "meaning": "Overdue payment is pending",
+        "severity": "warning"
+      }
+    ],
+    "data.totalOverDue": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.pos": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.missedEmi": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.netTenure": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.relAmount": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.nextEMIAmount": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.amcCharges": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.amountDrawnLimit": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.grossTenure": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ],
+    "data.balanceTenure": [
+      {
+        "condition": "===0",
+        "meaning": "",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "",
+        "severity": "normal"
+      }
+    ]
+  },
+  "productRules": {
+    "// EXAMPLE — delete this row // PERSONAL LOAN": {
+      "emi": {
+        "applicable": true
+      },
+      "flexi": {
+        "applicable": true
+      },
+      "foreclosure": {
+        "applicable": false
+      },
+      "prepayment": {
+        "applicable": true
+      },
+      "topup": {
+        "applicable": true
+      },
+      "bt": {
+        "applicable": true
+      }
+    },
+    "// EXAMPLE — delete this row // GOLD LOAN": {
+      "emi": {
+        "applicable": false
+      },
+      "flexi": {
+        "applicable": false
+      },
+      "foreclosure": {
+        "applicable": true
+      },
+      "prepayment": {
+        "applicable": true
+      },
+      "topup": {
+        "applicable": false
+      },
+      "bt": {
+        "applicable": false
+      }
+    },
+    "PERSONAL LOAN": {
+      "emi": {
+        "applicable": false
+      },
+      "flexi": {
+        "applicable": false
+      },
+      "foreclosure": {
+        "applicable": false
+      },
+      "prepayment": {
+        "applicable": false
+      },
+      "topup": {
+        "applicable": false
+      },
+      "bt": {
+        "applicable": false
+      }
+    },
+    "GOLD LOAN": {
+      "emi": {
+        "applicable": false
+      },
+      "flexi": {
+        "applicable": false
+      },
+      "foreclosure": {
+        "applicable": false
+      },
+      "prepayment": {
+        "applicable": false
+      },
+      "topup": {
+        "applicable": false
+      },
+      "bt": {
+        "applicable": false
+      }
+    },
+    "HOME LOAN": {
+      "emi": {
+        "applicable": false
+      },
+      "flexi": {
+        "applicable": false
+      },
+      "foreclosure": {
+        "applicable": false
+      },
+      "prepayment": {
+        "applicable": false
+      },
+      "topup": {
+        "applicable": false
+      },
+      "bt": {
+        "applicable": false
+      }
+    },
+    "// EXAMPLE — delete this row //": {
+      "prepayment": {
+        "conditions": [
+          {
+            "field": "balanceTenure",
+            "operator": ">",
+            "value": "6",
+            "charge": 0,
+            "message": "No prepayment charge after 6 EMIs"
+          },
+          {
+            "field": "balanceTenure",
+            "operator": "<=",
+            "value": "6",
+            "charge": 4,
+            "message": "4% charge if prepaid within 6 EMIs"
+          }
+        ],
+        "message": "4% charge if prepaid within 6 EMIs"
+      },
+      "foreclosure": {
+        "conditions": [
+          {
+            "field": "balanceTenure",
+            "operator": ">",
+            "value": "12",
+            "charge": 0,
+            "message": "No foreclosure charge after 12 EMIs"
+          }
+        ],
+        "message": "No foreclosure charge after 12 EMIs"
+      },
+      "emi": {
+        "conditions": [
+          {
+            "field": null,
+            "operator": null,
+            "value": null,
+            "charge": null,
+            "message": "Bullet repayment — no EMI schedule (Gold Loan)"
+          }
+        ],
+        "message": "Bullet repayment — no EMI schedule (Gold Loan)"
+      },
+      "flexi": {
+        "conditions": [
+          {
+            "field": null,
+            "operator": null,
+            "value": null,
+            "charge": null,
+            "message": "Flexi not available for this product"
+          }
+        ],
+        "message": "Flexi not available for this product"
+      }
+    }
+  },
+  "probingRules": [
+    {
+      "term": "// EXAMPLE — delete this row //",
+      "tools": [
+        "nextEMIAmount",
+        "emiAmount"
+      ],
+      "question": "Are you asking about your Next E M I Amount or Emi Amount?"
+    }
+  ],
+  "toolGroups": [
+    {
+      "name": "get_loan_summary",
+      "answers": "What loan do I have and what is my loan status?",
+      "fields": [
+        "data.prodDesc",
+        "data.customer_Name",
+        "data.prodCategory",
+        "data.relStatus",
+        "data.relAmount",
+        "data.disbDate",
+        "data.loanExpiryDate"
+      ],
+      "applicableProducts": "all",
+      "notApplicable": {}
+    },
+    {
+      "name": "get_emi_details",
+      "answers": "What is my EMI amount and when is my next EMI due?",
+      "fields": [
+        "data.nextEMIAmount",
+        "data.nextEmiDate",
+        "data.missedEmi",
+        "data.flexiFlag",
+        "data.isMilesFlag"
+      ],
+      "applicableProducts": [
+        "PERSONAL LOAN",
+        "PROFESSIONAL LOAN",
+        "BUSINESS LOAN"
+      ],
+      "notApplicable": {
+        "GOLD LOAN": "Bullet repayment structure — no periodic EMI schedule applicable"
+      }
+    },
+    {
+      "name": "get_outstanding_balance",
+      "answers": "How much do I still owe on my loan?",
+      "fields": [
+        "data.pos",
+        "data.totalOverDue",
+        "data.amcCharges"
+      ],
+      "applicableProducts": "all",
+      "notApplicable": {}
+    },
+    {
+      "name": "get_tenure_details",
+      "answers": "How much of my loan tenure is remaining?",
+      "fields": [
+        "data.grossTenure",
+        "data.netTenure",
+        "data.balanceTenure"
+      ],
+      "applicableProducts": [
+        "PERSONAL LOAN",
+        "PROFESSIONAL LOAN",
+        "BUSINESS LOAN"
+      ],
+      "notApplicable": {
+        "GOLD LOAN": "Gold Loan uses a bullet/lump-sum repayment model — tenure breakdown in EMI terms is not applicable"
+      }
+    },
+    {
+      "name": "get_interest_and_charges",
+      "answers": "What is my interest rate and what charges apply to my loan?",
+      "fields": [
+        "data.roi",
+        "data.amcCharges",
+        "data.flexiFlag"
+      ],
+      "applicableProducts": "all",
+      "notApplicable": {
+        "AMC Charges": "Only applicable where annual maintenance contract is part of the product — check prodCategory"
+      }
+    },
+    {
+      "name": "get_flexi_limit_details",
+      "answers": "What is my Flexi loan limit and how much have I drawn?",
+      "fields": [
+        "data.amountDrawnLimit",
+        "data.flexiFlag",
+        "data.pos"
+      ],
+      "applicableProducts": [
+        "PERSONAL LOAN (FLEXI)",
+        "BUSINESS LOAN (FLEXI)"
+      ],
+      "notApplicable": {
+        "GOLD LOAN": "Flexi facility not available on Gold Loan",
+        "NON-FLEXI LOANS": "amountDrawnLimit and flexiFlag are not meaningful when flexiFlag indicates a non-flexi product"
+      }
+    }
+  ]
+}

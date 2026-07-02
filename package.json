@@ -1,0 +1,10 @@
+{
+  "name": "finsaathi",
+  "private": true,
+  "scripts": {
+    "dev:portal-backend":  "cd portal/backend && npm run dev",
+    "dev:portal-frontend": "cd portal/frontend && npm run dev",
+    "dev:mcp":             "cd mcp-server && npm run dev",
+    "install:all":         "cd portal/backend && npm install && cd ../frontend && npm install && cd ../../mcp-server && npm install"
+  }
+}

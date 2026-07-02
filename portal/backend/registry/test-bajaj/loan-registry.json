@@ -1,0 +1,517 @@
+{
+  "client": {
+    "clientId": "test-bajaj"
+  },
+  "api": {
+    "name": "loan",
+    "endpoint": "https://api.bajajfinance.in/loan",
+    "method": "POST"
+  },
+  "fields": {
+    "agreementNo": {
+      "type": "reference",
+      "label": "Agreement No",
+      "include": false,
+      "role": "skip"
+    },
+    "prodDesc": {
+      "type": "enum",
+      "label": "Product",
+      "include": true,
+      "role": "display"
+    },
+    "prodCategory": {
+      "type": "enum",
+      "label": "Product Category",
+      "include": false,
+      "role": "rules"
+    },
+    "relStatus": {
+      "type": "enum",
+      "label": "Loan Status",
+      "include": true,
+      "role": "status"
+    },
+    "disbDate": {
+      "type": "date",
+      "label": "Disbursement Date",
+      "include": true,
+      "role": null
+    },
+    "maturityDate": {
+      "type": "date",
+      "label": "Maturity Date",
+      "include": true,
+      "role": null
+    },
+    "disbursedAmount": {
+      "type": "currency",
+      "label": "Disbursed Amount",
+      "include": true,
+      "role": null
+    },
+    "pos": {
+      "type": "currency",
+      "label": "Outstanding Amount",
+      "include": true,
+      "role": null
+    },
+    "nextEMIAmount": {
+      "type": "currency",
+      "label": "Next EMI Amount",
+      "include": true,
+      "role": null
+    },
+    "nextEmiDate": {
+      "type": "date",
+      "label": "Next EMI Date",
+      "include": true,
+      "role": null
+    },
+    "balanceTenure": {
+      "type": "number",
+      "label": "Balance Tenure",
+      "include": true,
+      "role": null
+    },
+    "totalTenure": {
+      "type": "number",
+      "label": "Total Tenure",
+      "include": true,
+      "role": null
+    },
+    "missedEMICount": {
+      "type": "number",
+      "label": "Missed EMIs",
+      "include": true,
+      "role": null
+    },
+    "totalOverDue": {
+      "type": "currency",
+      "label": "Total Overdue",
+      "include": true,
+      "role": null
+    },
+    "roi": {
+      "type": "percentage",
+      "label": "Interest Rate",
+      "include": true,
+      "role": null
+    },
+    "flexiFlag": {
+      "type": "enum",
+      "label": "Flexi Status",
+      "include": true,
+      "role": "rules"
+    },
+    "loanAccountNo": {
+      "type": "reference",
+      "label": "Loan Account No",
+      "include": false,
+      "role": "skip"
+    },
+    "branchCode": {
+      "type": "reference",
+      "label": "Branch Code",
+      "include": false,
+      "role": "skip"
+    },
+    "customerName": {
+      "type": "enum",
+      "label": "Customer Name",
+      "include": true,
+      "role": "display"
+    },
+    "mobileNo": {
+      "type": "reference",
+      "label": "Mobile No",
+      "include": false,
+      "role": "skip"
+    },
+    "panNo": {
+      "type": "reference",
+      "label": "PAN",
+      "include": false,
+      "role": "skip"
+    }
+  },
+  "enumValues": {
+    "relStatus": [
+      {
+        "value": "Active",
+        "meaning": "Loan is currently running",
+        "severity": "normal"
+      },
+      {
+        "value": "Overdue",
+        "meaning": "Payment has been missed",
+        "severity": "warning"
+      },
+      {
+        "value": "NPA",
+        "meaning": "Non-performing asset",
+        "severity": "critical"
+      },
+      {
+        "value": "Closed",
+        "meaning": "Loan fully repaid",
+        "severity": "info"
+      }
+    ],
+    "prodCategory": [
+      {
+        "value": "PERSONAL LOAN",
+        "meaning": "Personal loan family",
+        "severity": "normal"
+      },
+      {
+        "value": "GOLD LOAN",
+        "meaning": "Gold loan family",
+        "severity": "normal"
+      },
+      {
+        "value": "HOME LOAN",
+        "meaning": "Home loan family",
+        "severity": "normal"
+      }
+    ],
+    "flexiFlag": [
+      {
+        "value": "Y",
+        "meaning": "Flexi facility is active",
+        "severity": "normal"
+      },
+      {
+        "value": "N",
+        "meaning": "Flexi facility not active",
+        "severity": "normal"
+      }
+    ]
+  },
+  "thresholds": {
+    "pos": [
+      {
+        "condition": "===0",
+        "meaning": "Loan fully repaid",
+        "severity": "info"
+      },
+      {
+        "condition": ">0",
+        "meaning": "Amount outstanding",
+        "severity": "normal"
+      }
+    ],
+    "totalOverDue": [
+      {
+        "condition": "===0",
+        "meaning": "No overdue",
+        "severity": "normal"
+      },
+      {
+        "condition": ">0",
+        "meaning": "Overdue pending",
+        "severity": "warning"
+      }
+    ],
+    "missedEMICount": [
+      {
+        "condition": "===0",
+        "meaning": "No missed EMIs",
+        "severity": "normal"
+      },
+      {
+        "condition": ">0",
+        "meaning": "EMIs missed",
+        "severity": "warning"
+      }
+    ]
+  },
+  "productRules": {
+    "PERSONAL LOAN": {
+      "emi": {
+        "applicable": true
+      },
+      "flexi": {
+        "applicable": true
+      },
+      "foreclosure": {
+        "applicable": false,
+        "message": "Foreclosure not available for Personal Loan"
+      },
+      "prepayment": {
+        "applicable": true,
+        "conditions": [
+          {
+            "field": "balanceTenure",
+            "operator": ">",
+            "value": 6,
+            "charge": 0,
+            "message": "No charges after 6 EMIs"
+          }
+        ]
+      },
+      "topup": {
+        "applicable": true
+      },
+      "bt": {
+        "applicable": true
+      }
+    },
+    "GOLD LOAN": {
+      "emi": {
+        "applicable": false,
+        "message": "Gold Loan uses bullet repayment — no EMI schedule"
+      },
+      "flexi": {
+        "applicable": false,
+        "message": "Flexi not available for Gold Loan"
+      },
+      "foreclosure": {
+        "applicable": true
+      },
+      "prepayment": {
+        "applicable": true,
+        "conditions": [
+          {
+            "charge": 0,
+            "message": "No prepayment charges"
+          }
+        ]
+      },
+      "topup": {
+        "applicable": false,
+        "message": "Top-up not available for Gold Loan"
+      },
+      "bt": {
+        "applicable": false,
+        "message": "Balance transfer not available for Gold Loan"
+      }
+    }
+  },
+  "probingRules": [],
+  "toolGroups": [
+    {
+      "groupId": "loan_overview",
+      "groupLabel": "Loan Overview",
+      "description": "Provides a summary of the loan including product type, customer identity, and current loan status.",
+      "fields": [
+        "prodDesc",
+        "customerName",
+        "relStatus"
+      ],
+      "roles": [
+        "display",
+        "status"
+      ],
+      "includeOnly": true,
+      "tools": [
+        {
+          "toolId": "get_loan_summary",
+          "toolLabel": "Get Loan Summary",
+          "description": "Returns the product name, customer name, and current loan status (Active, Overdue, NPA, Closed).",
+          "fields": [
+            "prodDesc",
+            "customerName",
+            "relStatus"
+          ],
+          "outputHints": {
+            "relStatus": "Use enumValues to map status to severity and meaning for display."
+          }
+        }
+      ]
+    },
+    {
+      "groupId": "loan_financials",
+      "groupLabel": "Loan Financials",
+      "description": "Covers all monetary aspects of the loan including disbursed amount, outstanding principal, interest rate, and overdue details.",
+      "fields": [
+        "disbursedAmount",
+        "pos",
+        "roi",
+        "totalOverDue"
+      ],
+      "roles": [],
+      "includeOnly": true,
+      "tools": [
+        {
+          "toolId": "get_loan_financials",
+          "toolLabel": "Get Loan Financials",
+          "description": "Returns disbursed amount, current outstanding principal (POS), interest rate, and total overdue amount with severity context.",
+          "fields": [
+            "disbursedAmount",
+            "pos",
+            "roi",
+            "totalOverDue"
+          ],
+          "outputHints": {
+            "pos": "Apply thresholds: 0 means fully repaid (info), >0 means outstanding (normal).",
+            "totalOverDue": "Apply thresholds: 0 means no overdue (normal), >0 means overdue pending (warning)."
+          }
+        }
+      ]
+    },
+    {
+      "groupId": "emi_schedule",
+      "groupLabel": "EMI Schedule",
+      "description": "Covers EMI-related information including upcoming EMI date, EMI amount, missed EMIs, and tenure progress.",
+      "fields": [
+        "nextEMIAmount",
+        "nextEmiDate",
+        "missedEMICount",
+        "balanceTenure",
+        "totalTenure"
+      ],
+      "roles": [],
+      "includeOnly": true,
+      "productApplicability": {
+        "rule": "productRules.emi.applicable === true",
+        "applicable": [
+          "PERSONAL LOAN"
+        ],
+        "notApplicable": [
+          "GOLD LOAN"
+        ],
+        "notApplicableMessage": "Gold Loan uses bullet repayment — no EMI schedule"
+      },
+      "tools": [
+        {
+          "toolId": "get_emi_details",
+          "toolLabel": "Get EMI Details",
+          "description": "Returns the next EMI amount, next EMI due date, number of missed EMIs, balance tenure, and total loan tenure. Only applicable for EMI-based products like Personal Loan.",
+          "fields": [
+            "nextEMIAmount",
+            "nextEmiDate",
+            "missedEMICount",
+            "balanceTenure",
+            "totalTenure"
+          ],
+          "outputHints": {
+            "missedEMICount": "Apply thresholds: 0 means no missed EMIs (normal), >0 means EMIs missed (warning).",
+            "balanceTenure": "Compare with totalTenure to show repayment progress."
+          }
+        }
+      ]
+    },
+    {
+      "groupId": "loan_lifecycle",
+      "groupLabel": "Loan Lifecycle Dates",
+      "description": "Tracks key dates in the loan lifecycle including disbursement and maturity dates.",
+      "fields": [
+        "disbDate",
+        "maturityDate"
+      ],
+      "roles": [],
+      "includeOnly": true,
+      "tools": [
+        {
+          "toolId": "get_loan_dates",
+          "toolLabel": "Get Loan Lifecycle Dates",
+          "description": "Returns the disbursement date and maturity date of the loan to track loan timeline.",
+          "fields": [
+            "disbDate",
+            "maturityDate"
+          ],
+          "outputHints": {
+            "maturityDate": "Can be used to calculate days remaining to maturity.",
+            "disbDate": "Indicates when the loan was originally disbursed."
+          }
+        }
+      ]
+    },
+    {
+      "groupId": "loan_features",
+      "groupLabel": "Loan Features & Eligibility",
+      "description": "Determines which loan features (Flexi, Prepayment, Top-up, Balance Transfer, Foreclosure) are available based on product category and field rules.",
+      "fields": [
+        "flexiFlag",
+        "prodCategory",
+        "balanceTenure"
+      ],
+      "roles": [
+        "rules"
+      ],
+      "includeOnly": false,
+      "tools": [
+        {
+          "toolId": "check_flexi_eligibility",
+          "toolLabel": "Check Flexi Facility Eligibility",
+          "description": "Checks if Flexi facility is active or available for the loan based on flexiFlag and product rules.",
+          "fields": [
+            "flexiFlag",
+            "prodCategory"
+          ],
+          "outputHints": {
+            "flexiFlag": "Y means Flexi active, N means not active.",
+            "prodCategory": "Cross-check with productRules[prodCategory].flexi.applicable before surfacing Flexi options."
+          }
+        },
+        {
+          "toolId": "check_prepayment_eligibility",
+          "toolLabel": "Check Prepayment Eligibility",
+          "description": "Evaluates prepayment eligibility and applicable charges based on product category and balance tenure.",
+          "fields": [
+            "prodCategory",
+            "balanceTenure"
+          ],
+          "outputHints": {
+            "prodCategory": "Use productRules[prodCategory].prepayment to determine applicability and conditions.",
+            "balanceTenure": "For Personal Loan: no charges if balanceTenure > 6. Evaluate condition dynamically."
+          }
+        },
+        {
+          "toolId": "check_foreclosure_eligibility",
+          "toolLabel": "Check Foreclosure Eligibility",
+          "description": "Checks if foreclosure is permitted for the loan product.",
+          "fields": [
+            "prodCategory"
+          ],
+          "outputHints": {
+            "prodCategory": "Use productRules[prodCategory].foreclosure.applicable. Return message if not applicable."
+          }
+        },
+        {
+          "toolId": "check_topup_bt_eligibility",
+          "toolLabel": "Check Top-Up and Balance Transfer Eligibility",
+          "description": "Checks if top-up loan or balance transfer options are available for the loan product.",
+          "fields": [
+            "prodCategory"
+          ],
+          "outputHints": {
+            "prodCategory": "Use productRules[prodCategory].topup and productRules[prodCategory].bt for eligibility."
+          }
+        }
+      ]
+    },
+    {
+      "groupId": "overdue_health",
+      "groupLabel": "Loan Health & Overdue Assessment",
+      "description": "Aggregates overdue signals including status severity, overdue amount, and missed EMI count to assess loan health.",
+      "fields": [
+        "relStatus",
+        "totalOverDue",
+        "missedEMICount"
+      ],
+      "roles": [
+        "status"
+      ],
+      "includeOnly": true,
+      "tools": [
+        {
+          "toolId": "get_loan_health",
+          "toolLabel": "Get Loan Health Assessment",
+          "description": "Returns a consolidated health view of the loan by combining loan status severity, total overdue amount, and missed EMI count with threshold-based severity tagging.",
+          "fields": [
+            "relStatus",
+            "totalOverDue",
+            "missedEMICount"
+          ],
+          "outputHints": {
+            "relStatus": "Map to enumValues severity: Active=normal, Overdue=warning, NPA=critical, Closed=info.",
+            "totalOverDue": "Threshold: >0 is warning severity.",
+            "missedEMICount": "Threshold: >0 is warning severity. Combine all signals to produce overall health score."
+          }
+        }
+      ]
+    }
+  ]
+}

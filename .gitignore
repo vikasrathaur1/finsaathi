@@ -1,0 +1,7 @@
+node_modules/
+portal/backend/.env
+portal/frontend/.env
+mcp-server/.env
+dist/
+.DS_Store
+*.log

@@ -1,0 +1,56 @@
+{
+  "fields": {
+    "loan: [\r\n      {\r\n        prodDesc: 'PERSONAL LOAN',\r\n\r\n        customer_Name: 'Vikas Singh Rathaur',\r\n\r\n        roi: 11.25,\r\n\r\n        agreementNo: 'X402P34T9588444',\r\n\r\n        disbDate: '27/03/2025',\r\n\r\n        partnerName: null,\r\n\r\n        flexiFlag: 'Y',\r\n\r\n        totalOverDue: 0,\r\n\r\n        pos: 4203,\r\n\r\n        prodCategory: 'PERSONAL LOAN',\r\n\r\n        relStatus: 'Active',\r\n\r\n        prodId: 'PSPFL',\r\n\r\n        missedEmi: 0,\r\n\r\n        netTenure: 96,\r\n\r\n        isMilesFlag: 'N',\r\n\r\n        crmDealId: 'B2C000117643003',\r\n\r\n        primaryCustomerId: null,\r\n\r\n        relAmount: 3739000,\r\n\r\n        opportunityId: null,\r\n\r\n        nextEMIAmount: 132,\r\n\r\n        amcCharges: '0',\r\n\r\n        amountDrawnLimit: 3734797,\r\n\r\n        sourceSysId: '2',\r\n\r\n        applId: '1015709507',\r\n\r\n        listofAgreementNos: null,\r\n\r\n        closureDate: null,\r\n\r\n        grossTenure: 96,\r\n\r\n        balanceTenure: 83,\r\n\r\n        nextEmiDate:\r\n          '2026-08-02T00:00:00.0000000Z',\r\n\r\n        loanExpiryDate: '02/04/2033',\r\n      },\r\n    ],\r\n  };": {
+      "type": "skip",
+      "label": "Loan: [\r\n      {\r\n        Prod Desc: ' P E R S O N A L  L O A N',\r\n\r\n        Customer  Name: ' Vikas  Singh  Rathaur',\r\n\r\n        Roi: 11.25,\r\n\r\n        Agreement No: ' X402 P34 T9588444',\r\n\r\n        Disb Date: '27/03/2025',\r\n\r\n        Partner Name: Null,\r\n\r\n        Flexi Flag: ' Y',\r\n\r\n        Total Over Due: 0,\r\n\r\n        Pos: 4203,\r\n\r\n        Prod Category: ' P E R S O N A L  L O A N',\r\n\r\n        Rel Status: ' Active',\r\n\r\n        Prod Id: ' P S P F L',\r\n\r\n        Missed Emi: 0,\r\n\r\n        Net Tenure: 96,\r\n\r\n        Is Miles Flag: ' N',\r\n\r\n        Crm Deal Id: ' B2 C000117643003',\r\n\r\n        Primary Customer Id: Null,\r\n\r\n        Rel Amount: 3739000,\r\n\r\n        Opportunity Id: Null,\r\n\r\n        Next E M I Amount: 132,\r\n\r\n        Amc Charges: '0',\r\n\r\n        Amount Drawn Limit: 3734797,\r\n\r\n        Source Sys Id: '2',\r\n\r\n        Appl Id: '1015709507',\r\n\r\n        Listof Agreement Nos: Null,\r\n\r\n        Closure Date: Null,\r\n\r\n        Gross Tenure: 96,\r\n\r\n        Balance Tenure: 83,\r\n\r\n        Next Emi Date:\r\n          '2026 08 02 T00:00:00.0000000 Z',\r\n\r\n        Loan Expiry Date: '02/04/2033',\r\n      },\r\n    ],\r\n  };",
+      "include": false,
+      "role": null,
+      "notes": ""
+    }
+  },
+  "enumValues": {},
+  "thresholds": {},
+  "productRules": {
+    "Personal Loan": {
+      "emi": {
+        "applicable": false
+      },
+      "flexi": {
+        "applicable": false
+      },
+      "foreclosure": {
+        "applicable": false
+      },
+      "prepayment": {
+        "applicable": true
+      },
+      "topup": {
+        "applicable": false
+      },
+      "bt": {
+        "applicable": false
+      }
+    },
+    "Flexi Loan": {
+      "emi": {
+        "applicable": false
+      },
+      "flexi": {
+        "applicable": true
+      },
+      "foreclosure": {
+        "applicable": true
+      },
+      "prepayment": {
+        "applicable": true
+      },
+      "topup": {
+        "applicable": true
+      },
+      "bt": {
+        "applicable": false
+      }
+    }
+  },
+  "probingRules": []
+}
