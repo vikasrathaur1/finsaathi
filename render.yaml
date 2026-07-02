@@ -13,12 +13,9 @@ services:
       - key: REGISTRY_PATH
         value: ./registry
       - key: ANTHROPIC_API_KEY
-        sync: false          # you'll paste this in Render dashboard
+        sync: false          # paste this in Render dashboard after deploy
       - key: FRONTEND_URL
-        fromService:
-          name: finsaathi-portal-frontend
-          type: static
-          property: host
+        sync: false          # paste portal-frontend URL after it deploys
       - key: MCP_SERVER_URL
         fromService:
           name: finsaathi-mcp-server
@@ -44,21 +41,8 @@ services:
           type: web
           property: hostWithScheme
       - key: JWT_SECRET
-        generateValue: true  # Render generates a secure random secret
+        generateValue: true
       - key: SANDBOX_OTP
         value: "123456"
       - key: SESSION_TTL_MINUTES
         value: "30"
-
-  # ── 3. Portal Frontend (Static Site) ───────────────────────────────────────
-  - type: static
-    name: finsaathi-portal-frontend
-    rootDir: portal/frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          name: finsaathi-portal-backend
-          type: web
-          property: hostWithScheme
