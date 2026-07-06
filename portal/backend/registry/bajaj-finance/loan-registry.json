@@ -690,5 +690,98 @@
       "question": "Are you asking about your Next E M I Amount or Emi Amount?"
     }
   ],
-  "toolGroups": []
+  "toolGroups": [
+    {
+      "name": "get_loan_summary",
+      "answers": "What loan do I have and what is my loan status?",
+      "fields": [
+        "data.prodDesc",
+        "data.customer_Name",
+        "data.prodCategory",
+        "data.relStatus",
+        "data.relAmount",
+        "data.disbDate",
+        "data.loanExpiryDate"
+      ],
+      "applicableProducts": "all",
+      "notApplicable": {}
+    },
+    {
+      "name": "get_emi_details",
+      "answers": "What is my EMI amount and when is my next EMI due?",
+      "fields": [
+        "data.nextEMIAmount",
+        "data.nextEmiDate",
+        "data.missedEmi",
+        "data.flexiFlag",
+        "data.isMilesFlag"
+      ],
+      "applicableProducts": [
+        "PERSONAL LOAN",
+        "PROFESSIONAL LOAN",
+        "BUSINESS LOAN"
+      ],
+      "notApplicable": {
+        "GOLD LOAN": "Bullet repayment structure — no periodic EMI schedule applicable"
+      }
+    },
+    {
+      "name": "get_outstanding_balance",
+      "answers": "How much do I still owe on my loan?",
+      "fields": [
+        "data.pos",
+        "data.totalOverDue",
+        "data.amcCharges"
+      ],
+      "applicableProducts": "all",
+      "notApplicable": {}
+    },
+    {
+      "name": "get_tenure_details",
+      "answers": "How much of my loan tenure is remaining?",
+      "fields": [
+        "data.grossTenure",
+        "data.netTenure",
+        "data.balanceTenure"
+      ],
+      "applicableProducts": [
+        "PERSONAL LOAN",
+        "PROFESSIONAL LOAN",
+        "BUSINESS LOAN"
+      ],
+      "notApplicable": {
+        "GOLD LOAN": "Gold Loan uses a bullet/lump-sum repayment model — tenure breakdown in EMI terms is not applicable"
+      }
+    },
+    {
+      "name": "get_interest_and_charges",
+      "answers": "What is my interest rate and what charges apply to my loan?",
+      "fields": [
+        "data.roi",
+        "data.amcCharges",
+        "data.flexiFlag"
+      ],
+      "applicableProducts": "all",
+      "notApplicable": {
+        "AMC Charges": "Only applicable where annual maintenance contract is part of the product — check prodCategory"
+      }
+    },
+    {
+      "name": "get_flexi_limit_details",
+      "answers": "What is my Flexi loan limit and how much have I drawn?",
+      "fields": [
+        "data.amountDrawnLimit",
+        "data.flexiFlag",
+        "data.pos"
+      ],
+      "applicableProducts": [
+        "PERSONAL LOAN (FLEXI)",
+        "BUSINESS LOAN (FLEXI)"
+      ],
+      "notApplicable": {
+        "GOLD LOAN": "Flexi facility not available on Gold Loan",
+        "NON-FLEXI LOANS": "amountDrawnLimit and flexiFlag are not meaningful when flexiFlag indicates a non-flexi product"
+      }
+    }
+  ]
 }
