@@ -1,4 +1,5 @@
 node_modules/
+portal/backend/registry/
 portal/backend/.env
 portal/frontend/.env
 mcp-server/.env

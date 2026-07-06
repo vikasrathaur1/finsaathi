@@ -1,6 +1,6 @@
 {
   "clientId": "bajaj-finance",
-  "name": "bajaj Finance",
+  "name": "bajaj finance",
   "domain": "bajajfinserv.in",
   "channels": [
     "claude"
@@ -14,5 +14,5 @@
   "branding": {
     "primaryColour": "#6366f1"
   },
-  "createdAt": "2026-06-28T10:18:08.946Z"
+  "createdAt": "2026-07-02T15:29:56.121Z"
 }

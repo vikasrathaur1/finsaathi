@@ -14,12 +14,7 @@ dotenv.config();
 const app  = express();
 const PORT = process.env.PORT || 4000;
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL || "http://localhost:3000",
-  process.env.MCP_SERVER_URL,   // MCP server on Render
-  "http://localhost:3001",
-].filter(Boolean);
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:3000" }));
 app.use(express.json({ limit: "10mb" }));
 
 app.use("/api/client",        clientRoutes);
