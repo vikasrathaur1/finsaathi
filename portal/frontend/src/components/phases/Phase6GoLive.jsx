@@ -21,10 +21,11 @@ export default function Phase6GoLive({ clientConfig, registry, toolGroups, onAdd
   const reloadTools = async () => {
     setReloading(true); setReloadResult(null);
     try {
+      const base = mcpUrl.trim().replace(/\/+$/, "");
       const res = await fetch(`${API_URL}/api/deploy/reload/${clientId}`, {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({ url: `${mcpUrl}/admin/reload`, adminSecret }),
+        body:    JSON.stringify({ url: `${base}/admin/reload`, adminSecret }),
       });
       const data = await res.json();
       setReloadResult(data);
@@ -38,7 +39,8 @@ export default function Phase6GoLive({ clientConfig, registry, toolGroups, onAdd
   const checkHealth = async () => {
     setChecking(true); setHealth(null);
     try {
-      const res = await fetch(`${API_URL}/api/deploy/health/${clientId}?url=${encodeURIComponent(`${mcpUrl}/health`)}`);
+      const base = mcpUrl.trim().replace(/\/+$/, "");
+      const res = await fetch(`${API_URL}/api/deploy/health/${clientId}?url=${encodeURIComponent(`${base}/health`)}`);
       const data = await res.json();
       setHealth(data);
     } catch {

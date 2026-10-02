@@ -2,6 +2,18 @@ import { Router } from "express";
 
 const router = Router();
 
+// A wrong/misshapen URL (bad path, trailing slash, wrong port) usually gets an
+// HTML error page back instead of JSON — turn that into a readable message
+// instead of letting res.json() throw a raw "Unexpected token '<'" error.
+async function parseJsonOrExplain(upstream, targetUrl) {
+  const text = await upstream.text();
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`${targetUrl} did not return JSON (HTTP ${upstream.status}) — check the URL is correct (no trailing slash, right port/path).`);
+  }
+}
+
 router.get("/health/:clientId", async (req, res) => {
   const { url } = req.query;
   const targetUrl = url || `https://mcp.example.in/health`;
@@ -13,7 +25,7 @@ router.get("/health/:clientId", async (req, res) => {
     const upstream = await fetch(targetUrl, { signal: controller.signal });
     clearTimeout(timeout);
 
-    const data = await upstream.json();
+    const data = await parseJsonOrExplain(upstream, targetUrl);
     res.json({ status: data.status || "ok", tools: data.tools, client: data.client });
   } catch (err) {
     if (err.name === "AbortError") {
@@ -41,7 +53,7 @@ router.post("/reload/:clientId", async (req, res) => {
     });
     clearTimeout(timeout);
 
-    const data = await upstream.json();
+    const data = await parseJsonOrExplain(upstream, targetUrl);
     if (!upstream.ok) return res.json({ status: "error", message: data.error || `Server returned ${upstream.status}` });
     res.json({ status: "ok", tools: data.tools });
   } catch (err) {
