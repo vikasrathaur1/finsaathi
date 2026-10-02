@@ -5,7 +5,6 @@ import clientRoutes  from "./routes/client.js";
 import proxyRoutes   from "./routes/proxy.js";
 import excelRoutes   from "./routes/excel.js";
 import analyseRoutes from "./routes/analyse.js";
-import generateRoutes from "./routes/generate.js";
 import registryRoutes from "./routes/registry.js";
 import deployRoutes  from "./routes/deploy.js";
 
@@ -21,7 +20,6 @@ app.use("/api/client",        clientRoutes);
 app.use("/api",               proxyRoutes);
 app.use("/api",               excelRoutes);
 app.use("/api",               analyseRoutes);
-app.use("/api",               generateRoutes);
 app.use("/api/registry",      registryRoutes);
 app.use("/api/deploy",        deployRoutes);
 

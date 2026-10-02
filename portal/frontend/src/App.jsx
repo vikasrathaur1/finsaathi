@@ -6,8 +6,7 @@ import Phase1Onboarding from "./components/phases/Phase1Onboarding.jsx";
 import Phase2Confirmation from "./components/phases/Phase2Confirmation.jsx";
 import Phase3ProductRules from "./components/phases/Phase3ProductRules.jsx";
 import Phase5Grouping from "./components/phases/Phase5Grouping.jsx";
-import Phase6Generation from "./components/phases/Phase6Generation.jsx";
-import Phase7Deploy from "./components/phases/Phase7Deploy.jsx";
+import Phase6GoLive from "./components/phases/Phase6GoLive.jsx";
 
 const PHASES = [
   { id: 0, label: "Client Setup",     short: "Setup"      },
@@ -15,8 +14,7 @@ const PHASES = [
   { id: 2, label: "Confirmation",     short: "Confirm"    },
   { id: 3, label: "Product Rules",    short: "Rules"      },
   { id: 5, label: "Tool Grouping",    short: "Group"      },
-  { id: 6, label: "File Generation",  short: "Generate"   },
-  { id: 7, label: "Deploy",           short: "Deploy"     },
+  { id: 6, label: "Go Live",          short: "Deploy"     },
 ];
 
 export default function App() {
@@ -24,7 +22,6 @@ export default function App() {
   const [clientConfig, setClientConfig]   = useState(null);
   const [registry,     setRegistry]       = useState(null);
   const [toolGroups,   setToolGroups]     = useState(null);
-  const [generatedFiles, setGeneratedFiles] = useState(null);
 
   const goToPhase = (phaseId) => setCurrentPhase(phaseId);
 
@@ -32,14 +29,12 @@ export default function App() {
     clientConfig,
     registry,
     toolGroups,
-    generatedFiles,
     onClientSetup:   (cfg)     => { setClientConfig(cfg);       goToPhase(1); },
     onApiOnboarded:  (reg)     => { setRegistry(reg);            goToPhase(2); },
     onConfirmed:     (reg)     => { setRegistry(reg);            goToPhase(3); },
     onRulesApproved: (reg)     => { setRegistry(reg);            goToPhase(5); },
     onGroupsApproved:(groups)  => { setToolGroups(groups);       goToPhase(6); },
-    onFilesGenerated:(files)   => { setGeneratedFiles(files);    goToPhase(7); },
-    onAddAnotherApi: ()        => { setRegistry(null); setToolGroups(null); setGeneratedFiles(null); goToPhase(1); },
+    onAddAnotherApi: ()        => { setRegistry(null); setToolGroups(null); goToPhase(1); },
   };
 
   const renderPhase = () => {
@@ -49,8 +44,7 @@ export default function App() {
       case 2: return <Phase2Confirmation {...phaseProps} />;
       case 3: return <Phase3ProductRules {...phaseProps} />;
       case 5: return <Phase5Grouping  {...phaseProps} />;
-      case 6: return <Phase6Generation {...phaseProps} />;
-      case 7: return <Phase7Deploy    {...phaseProps} />;
+      case 6: return <Phase6GoLive    {...phaseProps} />;
       default: return null;
     }
   };

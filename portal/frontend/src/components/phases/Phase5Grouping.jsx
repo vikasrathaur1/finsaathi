@@ -259,7 +259,7 @@ export default function Phase5Grouping({ clientConfig, registry, onGroupsApprove
             className="btn-primary w-full py-2.5 flex items-center justify-center gap-2"
           >
             {loading ? <Loader2 size={15} className="animate-spin" /> : <CheckCircle size={15} />}
-            Approve & Generate Files →
+            Approve & Go Live →
           </button>
         </div>
       )}
