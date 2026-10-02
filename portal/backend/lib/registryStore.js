@@ -50,6 +50,16 @@ export const registryStore = {
     }
   },
 
+  async delete(clientId, apiName) {
+    try {
+      await fs.unlink(registryPath(clientId, apiName));
+      return true;
+    } catch (err) {
+      if (err.code === "ENOENT") return false;
+      throw err;
+    }
+  },
+
   // Returns all API registries for a client that have approved toolGroups
   async loadAll(clientId) {
     try {

@@ -40,4 +40,17 @@ router.put("/:clientId/:apiName", async (req, res) => {
   }
 });
 
+// Removes one API (and all its tools) from a client. The MCP server won't
+// drop those tools until it's reloaded afterwards (see /api/deploy/reload).
+router.delete("/:clientId/:apiName", async (req, res) => {
+  try {
+    const { clientId, apiName } = req.params;
+    const deleted = await registryStore.delete(clientId, apiName);
+    if (!deleted) return res.status(404).json({ error: "Registry not found" });
+    res.json({ deleted: true, clientId, apiName });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;
